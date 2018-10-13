@@ -12,7 +12,85 @@ class MarsPeriodsView extends WatchUi.View {
     var lineSpacing = Graphics.getFontHeight(longishFont);
     var centerY = 0;
     var centerX = 0;
+    var top = 0;
+    var bottom = 0;
 
+    function initialize() {
+        View.initialize();
+    }
+
+    // Load your resources here
+    function onLayout(dc) {
+        setLayout(Rez.Layouts.MarsWidget(dc));
+		/*      
+        dc.setColor( Graphics.COLOR_BLACK, Graphics.COLOR_BLACK );
+        dc.clear();
+        dc.setColor( Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT );
+        */
+        centerY = (dc.getHeight() / 2) - (lineSpacing / 2);
+        centerX = (dc.getWidth()/2);
+        top = 0;
+        bottom = dc.getHeight() - Graphics.getFontHeight(font);
+        /*
+        
+        //period
+        var now = new Time.Moment(Time.now().value());
+        dc.drawText( centerX, 0, font, calendarMarsDate(now), Graphics.TEXT_JUSTIFY_CENTER );
+
+		// date and time
+		var todayDateTime = Gregorian.info(Time.now(), Time.FORMAT_MEDIUM);
+		
+		//time
+		var timeString = Lang.format("$1$:$2$",[todayDateTime.hour, todayDateTime.min.format("%02d")]);
+        dc.drawText( centerX, centerY, longishFont, timeString, Graphics.TEXT_JUSTIFY_CENTER );
+		
+		//date
+		var dateString = Lang.format("$1$ $2$ $3$",[todayDateTime.day,todayDateTime.month,todayDateTime.year]);
+        dc.drawText( centerX, dc.getHeight() - Graphics.getFontHeight(font) , font, dateString , Graphics.TEXT_JUSTIFY_CENTER );
+        */    
+    }
+
+    // Called when this View is brought to the foreground. Restore
+    // the state of this View and prepare it to be shown. This includes
+    // loading resources into memory.
+    function onShow() {
+    	
+		// period
+		var now = new Time.Moment(Time.now().value());
+		var viewPeriod = View.findDrawableById("MarsPeriodLabel");
+		//viewPeriod.setFont(font);
+		viewPeriod.setLocation(centerX, top);
+        viewPeriod.setText(calendarMarsDate(now));
+        
+        // time
+        var todayDateTime = Gregorian.info(Time.now(), Time.FORMAT_MEDIUM);
+		var timeString = Lang.format("$1$:$2$",[todayDateTime.hour, todayDateTime.min.format("%02d")]);
+        var viewTime = View.findDrawableById("TimeLabel");
+        viewTime.setFont(longishFont);
+        viewTime.setLocation(centerX, centerY);
+        viewTime.setText(timeString);
+        
+        // date
+		var dateString = Lang.format("$1$ $2$ $3$",[todayDateTime.day,todayDateTime.month,todayDateTime.year]);
+    	var viewDate = View.findDrawableById("DateLabel");
+        //viewDate.setFont(font);
+        viewDate.setLocation(centerX, bottom);
+        viewDate.setText(dateString);
+    	
+    }
+    
+    // Update the view
+    function onUpdate(dc) {
+        // Call the parent onUpdate function to redraw the layout
+        View.onUpdate(dc);
+    }
+
+    // Called when this View is removed from the screen. Save the
+    // state of this View here. This includes freeing resources from
+    // memory.
+    function onHide() {
+    }
+  
 	// function nbWeeksInP13 returns number of weeks (integer) in P13
 	// function takes a year (integer) as parameter
 	// Beta from the MarsTime technical specs
@@ -36,7 +114,6 @@ class MarsPeriodsView extends WatchUi.View {
 		}
 		return nbWP13;
 	}
-	
 	
 	// function startDate returns the first day of the Mars year in a Garmin moment format
 	// that contains the input year (integer) 
@@ -107,71 +184,4 @@ class MarsPeriodsView extends WatchUi.View {
 		var output = "P"+mPeriod+"W"+mWeek+" D"+mDay;
 		return output;
 	}
-	
-	
-    function initialize() {
-        View.initialize();
-    }
-
-    // Load your resources here
-    function onLayout(dc) {
-        //setLayout(Rez.Layouts.MarsWidget(dc));
-        dc.setColor( Graphics.COLOR_BLACK, Graphics.COLOR_BLACK );
-        dc.clear();
-        dc.setColor( Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT );
-        
-        centerY = (dc.getHeight() / 2) - (lineSpacing / 2);
-        centerX = (dc.getWidth()/2);   
-    }
-
-    // Called when this View is brought to the foreground. Restore
-    // the state of this View and prepare it to be shown. This includes
-    // loading resources into memory.
-    function onShow() {
-    	/*
-		// period
-		var now = new Time.Moment(Time.now().value());
-		var viewPeriod = View.findDrawableById("MarsPeriodLabel");
-        viewPeriod.setText(calendarMarsDate(now));
-        
-        // time
-        var todayDateTime = Gregorian.info(Time.now(), Time.FORMAT_MEDIUM);
-		var timeString = Lang.format("$1$:$2$",[todayDateTime.hour, todayDateTime.min.format("%02d")]);
-        var viewTime = View.findDrawableById("TimeLabel");
-        viewTime.setText(timeString);
-        
-        // date
-		var dateString = Lang.format("$1$ $2$ $3$",[todayDateTime.day,todayDateTime.month,todayDateTime.year]);
-    	var viewDate = View.findDrawableById("DateLabel");
-    	viewDate.setText(dateString);
-    	*/
-    }
-
-    // Update the view
-    function onUpdate(dc) {
-        // Call the parent onUpdate function to redraw the layout
-        //View.onUpdate(dc);
-        
-        //period
-        var now = new Time.Moment(Time.now().value());
-        dc.drawText( centerX, 0, font, calendarMarsDate(now), Graphics.TEXT_JUSTIFY_CENTER );
-
-		// date and time
-		var todayDateTime = Gregorian.info(Time.now(), Time.FORMAT_MEDIUM);
-		
-		//time
-		var timeString = Lang.format("$1$:$2$",[todayDateTime.hour, todayDateTime.min.format("%02d")]);
-        dc.drawText( centerX, centerY, longishFont, timeString, Graphics.TEXT_JUSTIFY_CENTER );
-		
-		//date
-		var dateString = Lang.format("$1$ $2$ $3$",[todayDateTime.day,todayDateTime.month,todayDateTime.year]);
-        dc.drawText( centerX, dc.getHeight() - Graphics.getFontHeight(font) , font, dateString , Graphics.TEXT_JUSTIFY_CENTER );
-    }
-
-    // Called when this View is removed from the screen. Save the
-    // state of this View here. This includes freeing resources from
-    // memory.
-    function onHide() {
-    }
-
 }
