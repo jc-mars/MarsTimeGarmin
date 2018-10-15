@@ -105,7 +105,13 @@ class MarsPeriodsView extends WatchUi.View {
             :day    => 1
         };
         var date = Gregorian.moment(options);
-        var iDay = Gregorian.utcInfo(date, Time.FORMAT_SHORT).day_of_week; // .info() method uses localtimezone.
+        var iDay = Gregorian.utcInfo(date, Time.FORMAT_SHORT).day_of_week; // .info() method uses localtimezone. Probably better to use .info() and deal with dst !?
+                                                                           // I see one hour diff if I use .info(), meaning start of the year is 1/1/year at 1:00am
+                                                                           // I've put utcInfo to compensate that hour, but this is probably wrong. Is the hour delay the dst ?
+                                                                           // indeed getclockTime().dst is 3600, so one hour. Code would be:
+                                                                           //Gregorian.info()
+                                                                           //.add(getClocktime.dst) // add of substract? by the way .subtract() without s !
+                                                                           
         //System.println(iDay);
         switch (iDay) {
             case 1:
