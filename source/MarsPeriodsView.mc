@@ -8,7 +8,9 @@ using Toybox.Time.Gregorian;
 class MarsPeriodsView extends WatchUi.View {
     var font = Graphics.FONT_LARGE;
     var longishFont = WatchUi.loadResource(Rez.Fonts.longishFont);
-    var lineSpacing = Graphics.getFontHeight(longishFont);
+    var bebas_neue_light_Font = WatchUi.loadResource(Rez.Fonts.bebas_neue_light_Font);
+    var bebas_neue_regular_Font = WatchUi.loadResource(Rez.Fonts.bebas_neue_regular_Font);
+    var lineSpacing = Graphics.getFontHeight(bebas_neue_regular_Font);
     var centerY = 0;
     var centerX = 0;
     var top = 0;
@@ -44,13 +46,22 @@ class MarsPeriodsView extends WatchUi.View {
         viewPeriod.setLocation(centerX, top);
         viewPeriod.setText(calendarMarsDate(now));
         
-        // time
+        // hour
         var todayDateTime = Gregorian.info(Time.now(), Time.FORMAT_MEDIUM);
-        var timeString = Lang.format("$1$:$2$",[todayDateTime.hour, todayDateTime.min.format("%02d")]);
-        var viewTime = View.findDrawableById("TimeLabel");
-        viewTime.setFont(longishFont);
-        viewTime.setLocation(centerX, centerY);
-        viewTime.setText(timeString);
+        var hourString = Lang.format("$1$",[todayDateTime.hour]);
+        var viewHour = View.findDrawableById("HourLabel");
+        viewHour.setFont(bebas_neue_regular_Font);
+        viewHour.setLocation(centerX, centerY);
+        viewHour.setText(hourString);
+        
+        // min
+        var minString = Lang.format("$1$",[todayDateTime.min.format("%02d")]);
+        var viewMin = View.findDrawableById("MinLabel");
+        viewMin.setFont(bebas_neue_light_Font);
+        viewMin.setLocation(centerX, centerY);
+        viewMin.setText(minString);
+        
+        
         
         // date
         var dateString = Lang.format("$1$ $2$ $3$",[todayDateTime.day,todayDateTime.month,todayDateTime.year]);
