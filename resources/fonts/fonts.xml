@@ -1,5 +1,5 @@
 <fonts>
 	<font id="longishFont" filename="longish.fnt" filter="1234567890:"/>
-	<font id="bebas_neue_regular_Font" filename="bebas_neue_regular.fnt" filter="1234567890:" antialias="true" />
-	<font id="bebas_neue_light_Font" filename="bebas_neue_light.fnt" filter="1234567890:" antialias="true" />
+	<font id="bebas_neue_bold_Font" filename="bebas_neue_bold.fnt" filter="1234567890:" antialias="true" />
+	<font id="bebas_neue_book_Font" filename="bebas_neue_book.fnt" filter="1234567890:" antialias="true" />
 </fonts>

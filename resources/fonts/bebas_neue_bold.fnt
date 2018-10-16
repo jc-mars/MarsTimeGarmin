@@ -1,0 +1,15 @@
+info face="Bebas Neue Bold" size=104 bold=0 italic=0 charset="" unicode=1 stretchH=100 smooth=1 aa=1 padding=0,0,0,0 spacing=1,1 outline=0
+common lineHeight=104 base=89 scaleW=256 scaleH=256 pages=1 packed=0 alphaChnl=0 redChnl=0 greenChnl=0 blueChnl=0
+page id=0 file="bebas_neue_bold_0.png"
+chars count=11
+char id=48   x=37    y=0     width=35    height=72    xoffset=2     yoffset=18    xadvance=40    page=0  chnl=15
+char id=49   x=74    y=73    width=21    height=70    xoffset=10    yoffset=19    xadvance=40    page=0  chnl=15
+char id=50   x=179   y=0     width=35    height=71    xoffset=3     yoffset=18    xadvance=40    page=0  chnl=15
+char id=51   x=109   y=0     width=34    height=72    xoffset=3     yoffset=18    xadvance=40    page=0  chnl=15
+char id=52   x=0     y=73    width=38    height=70    xoffset=1     yoffset=19    xadvance=40    page=0  chnl=15
+char id=53   x=215   y=0     width=34    height=71    xoffset=3     yoffset=19    xadvance=40    page=0  chnl=15
+char id=54   x=144   y=0     width=34    height=72    xoffset=3     yoffset=18    xadvance=40    page=0  chnl=15
+char id=55   x=39    y=73    width=34    height=70    xoffset=3     yoffset=19    xadvance=40    page=0  chnl=15
+char id=56   x=0     y=0     width=36    height=72    xoffset=2     yoffset=18    xadvance=40    page=0  chnl=15
+char id=57   x=73    y=0     width=35    height=72    xoffset=2     yoffset=18    xadvance=40    page=0  chnl=15
+char id=58   x=96    y=73    width=12    height=49    xoffset=3     yoffset=40    xadvance=19    page=0  chnl=15
