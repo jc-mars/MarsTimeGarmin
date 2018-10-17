@@ -48,7 +48,7 @@ class MarsPeriodsView extends WatchUi.View {
         
         // hour
         var todayDateTime = Gregorian.info(Time.now(), Time.FORMAT_MEDIUM);
-        var hourString = Lang.format("$1$",[todayDateTime.hour]);
+        var hourString = Lang.format("$1$",[todayDateTime.hour.format("%02d")]);
         var viewHour = View.findDrawableById("HourLabel");
         viewHour.setFont(bebas_neue_bold_Font);
         viewHour.setLocation(centerX, centerY);
